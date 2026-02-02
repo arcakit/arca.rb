@@ -7,8 +7,6 @@ jobs:
   release:
     name: Test and push gem to RubyGems.org
     runs-on: ubuntu-latest
-    env:
-      BUNDLE_FROZEN: false
     permissions:
       id-token: write   # required for RubyGems Trusted Publishing
       contents: write   # required for rake release to push the release tag
