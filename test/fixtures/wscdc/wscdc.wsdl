@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="http://servicios1.afip.gov.ar/wscdc/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://servicios1.afip.gov.ar/wscdc/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://servicios1.afip.gov.ar/wscdc/">
+      <xsd:element name="ComprobanteDummy" type="tns:ComprobanteDummyType"/>
+      <xsd:element name="ComprobanteDummyResponse" type="tns:ComprobanteDummyResponseType"/>
+      <xsd:complexType name="ComprobanteDummyType">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="ComprobanteDummyResponseType">
+        <xsd:sequence>
+          <xsd:element name="ComprobanteDummyResult" type="tns:DummyResultType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DummyResultType">
+        <xsd:sequence>
+          <xsd:element name="AppServer" type="xsd:string"/>
+          <xsd:element name="DbServer" type="xsd:string"/>
+          <xsd:element name="AuthServer" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuthType">
+        <xsd:sequence>
+          <xsd:element name="Token" type="xsd:string"/>
+          <xsd:element name="Sign" type="xsd:string"/>
+          <xsd:element name="Cuit" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ComprobanteConstatar" type="tns:ComprobanteConstatarType"/>
+      <xsd:element name="ComprobanteConstatarResponse" type="tns:ComprobanteConstatarResponseType"/>
+      <xsd:complexType name="ComprobanteConstatarType">
+        <xsd:sequence>
+          <xsd:element name="Auth" type="tns:AuthType"/>
+          <xsd:element name="CmpReq" type="tns:CmpReqType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CmpReqType">
+        <xsd:sequence>
+          <xsd:element name="CbteModo" type="xsd:string"/>
+          <xsd:element name="CuitEmisor" type="xsd:long"/>
+          <xsd:element name="PtoVta" type="xsd:int"/>
+          <xsd:element name="CbteTipo" type="xsd:int"/>
+          <xsd:element name="CbteNro" type="xsd:long"/>
+          <xsd:element name="CbteFch" type="xsd:string"/>
+          <xsd:element name="ImpTotal" type="xsd:double"/>
+          <xsd:element name="CodAutorizacion" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ComprobanteConstatarResponseType">
+        <xsd:sequence>
+          <xsd:element name="ComprobanteConstatarResult" type="tns:ComprobanteConstatarResultType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ComprobanteConstatarResultType">
+        <xsd:sequence>
+          <xsd:element name="CmpResp" type="tns:CmpReqType" minOccurs="0"/>
+          <xsd:element name="Resultado" type="xsd:string"/>
+          <xsd:element name="FchProceso" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="Observaciones" type="tns:ObservacionesType" minOccurs="0"/>
+          <xsd:element name="Errors" type="tns:ErrorsType" minOccurs="0"/>
+          <xsd:element name="Events" type="tns:EventsType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ObservacionesType">
+        <xsd:sequence>
+          <xsd:element name="Obs" type="tns:ObsType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ObsType">
+        <xsd:sequence>
+          <xsd:element name="Code" type="xsd:int"/>
+          <xsd:element name="Msg" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ErrorsType">
+        <xsd:sequence>
+          <xsd:element name="Err" type="tns:ErrType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ErrType">
+        <xsd:sequence>
+          <xsd:element name="Code" type="xsd:int"/>
+          <xsd:element name="Msg" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EventsType">
+        <xsd:sequence>
+          <xsd:element name="Evt" type="tns:EvtType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EvtType">
+        <xsd:sequence>
+          <xsd:element name="Code" type="xsd:int"/>
+          <xsd:element name="Msg" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ComprobantesModalidadConsultar" type="tns:AuthOnlyType"/>
+      <xsd:element name="ComprobantesModalidadConsultarResponse" type="tns:ComprobantesModalidadConsultarResponseType"/>
+      <xsd:complexType name="AuthOnlyType">
+        <xsd:sequence>
+          <xsd:element name="Auth" type="tns:AuthType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ComprobantesModalidadConsultarResponseType">
+        <xsd:sequence>
+          <xsd:element name="ComprobantesModalidadConsultarResult" type="tns:ResultGetFacModType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResultGetFacModType">
+        <xsd:sequence>
+          <xsd:element name="ResultGet" type="tns:FacModTipoArrayType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FacModTipoArrayType">
+        <xsd:sequence>
+          <xsd:element name="FacModTipo" type="tns:FacModTipoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FacModTipoType">
+        <xsd:sequence>
+          <xsd:element name="Cod" type="xsd:string"/>
+          <xsd:element name="Desc" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ComprobantesTipoConsultar" type="tns:AuthOnlyType"/>
+      <xsd:element name="ComprobantesTipoConsultarResponse" type="tns:ComprobantesTipoConsultarResponseType"/>
+      <xsd:complexType name="ComprobantesTipoConsultarResponseType">
+        <xsd:sequence>
+          <xsd:element name="ComprobantesTipoConsultarResult" type="tns:ResultGetCbteTipoType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResultGetCbteTipoType">
+        <xsd:sequence>
+          <xsd:element name="ResultGet" type="tns:CbteTipoArrayType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CbteTipoArrayType">
+        <xsd:sequence>
+          <xsd:element name="CbteTipo" type="tns:CbteTipoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CbteTipoType">
+        <xsd:sequence>
+          <xsd:element name="Id" type="xsd:int"/>
+          <xsd:element name="Desc" type="xsd:string"/>
+          <xsd:element name="FchDesde" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FchHasta" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DocumentosTipoConsultar" type="tns:AuthOnlyType"/>
+      <xsd:element name="DocumentosTipoConsultarResponse" type="tns:DocumentosTipoConsultarResponseType"/>
+      <xsd:complexType name="DocumentosTipoConsultarResponseType">
+        <xsd:sequence>
+          <xsd:element name="DocumentosTipoConsultarResult" type="tns:ResultGetDocTipoType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResultGetDocTipoType">
+        <xsd:sequence>
+          <xsd:element name="ResultGet" type="tns:DocTipoArrayType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocTipoArrayType">
+        <xsd:sequence>
+          <xsd:element name="DocTipo" type="tns:DocTipoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DocTipoType">
+        <xsd:sequence>
+          <xsd:element name="Id" type="xsd:int"/>
+          <xsd:element name="Desc" type="xsd:string"/>
+          <xsd:element name="FchDesde" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="FchHasta" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="OpcionalesTipoConsultar" type="tns:AuthOnlyType"/>
+      <xsd:element name="OpcionalesTipoConsultarResponse" type="tns:OpcionalesTipoConsultarResponseType"/>
+      <xsd:complexType name="OpcionalesTipoConsultarResponseType">
+        <xsd:sequence>
+          <xsd:element name="OpcionalesTipoConsultarResult" type="tns:ResultGetOpcionalTipoType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResultGetOpcionalTipoType">
+        <xsd:sequence>
+          <xsd:element name="ResultGet" type="tns:OpcionalTipoArrayType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OpcionalTipoArrayType">
+        <xsd:sequence>
+          <xsd:element name="OpcionalTipo" type="tns:OpcionalTipoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OpcionalTipoType">
+        <xsd:sequence>
+          <xsd:element name="Id" type="xsd:string"/>
+          <xsd:element name="Desc" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ComprobanteDummySoapIn">
+    <wsdl:part name="parameters" element="tns:ComprobanteDummy"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobanteDummySoapOut">
+    <wsdl:part name="parameters" element="tns:ComprobanteDummyResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobanteConstatarSoapIn">
+    <wsdl:part name="parameters" element="tns:ComprobanteConstatar"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobanteConstatarSoapOut">
+    <wsdl:part name="parameters" element="tns:ComprobanteConstatarResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobantesModalidadConsultarSoapIn">
+    <wsdl:part name="parameters" element="tns:ComprobantesModalidadConsultar"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobantesModalidadConsultarSoapOut">
+    <wsdl:part name="parameters" element="tns:ComprobantesModalidadConsultarResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobantesTipoConsultarSoapIn">
+    <wsdl:part name="parameters" element="tns:ComprobantesTipoConsultar"/>
+  </wsdl:message>
+  <wsdl:message name="ComprobantesTipoConsultarSoapOut">
+    <wsdl:part name="parameters" element="tns:ComprobantesTipoConsultarResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DocumentosTipoConsultarSoapIn">
+    <wsdl:part name="parameters" element="tns:DocumentosTipoConsultar"/>
+  </wsdl:message>
+  <wsdl:message name="DocumentosTipoConsultarSoapOut">
+    <wsdl:part name="parameters" element="tns:DocumentosTipoConsultarResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OpcionalesTipoConsultarSoapIn">
+    <wsdl:part name="parameters" element="tns:OpcionalesTipoConsultar"/>
+  </wsdl:message>
+  <wsdl:message name="OpcionalesTipoConsultarSoapOut">
+    <wsdl:part name="parameters" element="tns:OpcionalesTipoConsultarResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="WSCDCSoap">
+    <wsdl:operation name="ComprobanteDummy">
+      <wsdl:input message="tns:ComprobanteDummySoapIn"/>
+      <wsdl:output message="tns:ComprobanteDummySoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ComprobanteConstatar">
+      <wsdl:input message="tns:ComprobanteConstatarSoapIn"/>
+      <wsdl:output message="tns:ComprobanteConstatarSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ComprobantesModalidadConsultar">
+      <wsdl:input message="tns:ComprobantesModalidadConsultarSoapIn"/>
+      <wsdl:output message="tns:ComprobantesModalidadConsultarSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ComprobantesTipoConsultar">
+      <wsdl:input message="tns:ComprobantesTipoConsultarSoapIn"/>
+      <wsdl:output message="tns:ComprobantesTipoConsultarSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentosTipoConsultar">
+      <wsdl:input message="tns:DocumentosTipoConsultarSoapIn"/>
+      <wsdl:output message="tns:DocumentosTipoConsultarSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="OpcionalesTipoConsultar">
+      <wsdl:input message="tns:OpcionalesTipoConsultarSoapIn"/>
+      <wsdl:output message="tns:OpcionalesTipoConsultarSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSCDCSoap" type="tns:WSCDCSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ComprobanteDummy">
+      <soap:operation soapAction="http://servicios1.afip.gov.ar/wscdc/ComprobanteDummy" style="document"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ComprobanteConstatar">
+      <soap:operation soapAction="http://servicios1.afip.gov.ar/wscdc/ComprobanteConstatar" style="document"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ComprobantesModalidadConsultar">
+      <soap:operation soapAction="http://servicios1.afip.gov.ar/wscdc/ComprobantesModalidadConsultar" style="document"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ComprobantesTipoConsultar">
+      <soap:operation soapAction="http://servicios1.afip.gov.ar/wscdc/ComprobantesTipoConsultar" style="document"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentosTipoConsultar">
+      <soap:operation soapAction="http://servicios1.afip.gov.ar/wscdc/DocumentosTipoConsultar" style="document"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpcionalesTipoConsultar">
+      <soap:operation soapAction="http://servicios1.afip.gov.ar/wscdc/OpcionalesTipoConsultar" style="document"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSCDC">
+    <wsdl:port name="WSCDCSoap" binding="tns:WSCDCSoap">
+      <soap:address location="https://wswhomo.afip.gov.ar/WSCDC/service.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

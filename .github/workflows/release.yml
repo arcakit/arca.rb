@@ -1,0 +1,37 @@
+# Publish to RubyGems using the official release-gem action (Trusted Publishing).
+# Run this workflow manually after bumping version and pushing to main. Tests run first.
+name: Release
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    name: Test and push gem to RubyGems.org
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_FROZEN: false
+    permissions:
+      id-token: write   # required for RubyGems Trusted Publishing
+      contents: write   # required for rake release to push the release tag
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version-file: .ruby-version
+          bundler-cache: true
+      - name: Run tests
+        run: bundle exec rake
+      - name: Publish to RubyGems.org
+        uses: rubygems/release-gem@v1
+      - name: Set release tag
+        id: tag
+        run: echo "tag=v$(ruby -e "require './lib/arca/version'; puts Arca::VERSION")" >> $GITHUB_OUTPUT
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: pkg/arca-*.gem
+          body_path: CHANGELOG.md
+          generate_release_notes: false

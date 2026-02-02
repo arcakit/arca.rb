@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OpcionalesTipoConsultarResponse xmlns="http://servicios1.afip.gov.ar/wscdc/">
+      <OpcionalesTipoConsultarResult>
+        <ResultGet>
+          <OpcionalTipo>
+            <Id>OP1</Id>
+            <Desc>Opcional tipo 1</Desc>
+          </OpcionalTipo>
+        </ResultGet>
+      </OpcionalesTipoConsultarResult>
+    </OpcionalesTipoConsultarResponse>
+  </soap:Body>
+</soap:Envelope>

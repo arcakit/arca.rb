@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarConstanciaPorLote_v2Response xmlns:ns2="http://impl.service.wsrgiva.afip.gov.ar/RegimenPercepcionIVAService/">
+      <return>
+        <constancia>
+          <fechaConsulta>23-03-2023</fechaConsulta>
+          <idContribuyente>30636414936</idContribuyente>
+          <codigoError>4003</codigoError>
+          <descripcionError>CUIT Inexistente</descripcionError>
+        </constancia>
+      </return>
+    </ns2:consultarConstanciaPorLote_v2Response>
+  </soap:Body>
+</soap:Envelope>

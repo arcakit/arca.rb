@@ -1,0 +1,17 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarComprobantesResponse xmlns:ns2="https://ar.gob.afip.wsfecred/FECredService/">
+      <consultarComprobantesReturn>
+        <arrayComprobantes>
+          <comprobante>
+            <cbteNro>1</cbteNro>
+            <codTipoCmp>1</codTipoCmp>
+          </comprobante>
+        </arrayComprobantes>
+        <nroPagina>1</nroPagina>
+        <hayMas>false</hayMas>
+        <arrayObservaciones/>
+      </consultarComprobantesReturn>
+    </ns2:consultarComprobantesResponse>
+  </soap:Body>
+</soap:Envelope>

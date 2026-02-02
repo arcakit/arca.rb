@@ -1,0 +1,22 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ComprobantesModalidadConsultarResponse xmlns="http://servicios1.afip.gov.ar/wscdc/">
+      <ComprobantesModalidadConsultarResult>
+        <ResultGet>
+          <FacModTipo>
+            <Cod>CAE</Cod>
+            <Desc>Codigo de Autorizacion Electronico</Desc>
+          </FacModTipo>
+          <FacModTipo>
+            <Cod>CAEA</Cod>
+            <Desc>Codigo de Autorizacion Electronico Anticipado</Desc>
+          </FacModTipo>
+          <FacModTipo>
+            <Cod>CAI</Cod>
+            <Desc>Codigo de Autorizacion Impreso</Desc>
+          </FacModTipo>
+        </ResultGet>
+      </ComprobantesModalidadConsultarResult>
+    </ComprobantesModalidadConsultarResponse>
+  </soap:Body>
+</soap:Envelope>

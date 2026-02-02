@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarTiposRetencionesResponse xmlns:ns2="https://ar.gob.afip.wsfecred/FECredService/">
+      <consultarTiposRetencionesReturn>
+        <arrayErrores>
+          <codigoDescripcion>
+            <codigo>600</codigo>
+            <descripcion>No se corresponden token con firma</descripcion>
+          </codigoDescripcion>
+        </arrayErrores>
+      </consultarTiposRetencionesReturn>
+    </ns2:consultarTiposRetencionesResponse>
+  </soap:Body>
+</soap:Envelope>

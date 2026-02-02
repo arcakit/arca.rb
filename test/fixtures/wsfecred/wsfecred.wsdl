@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="https://ar.gob.afip.wsfecred/FECredService/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  name="FECredService"
+  targetNamespace="https://ar.gob.afip.wsfecred/FECredService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://ar.gob.afip.wsfecred/FECredService/">
+      <xsd:element name="dummy" type="tns:DummyType"/>
+      <xsd:element name="dummyResponse" type="tns:DummyResponseType"/>
+      <xsd:complexType name="DummyType">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="DummyResponseType">
+        <xsd:sequence>
+          <xsd:element name="return" type="tns:DummyReturnType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DummyReturnType">
+        <xsd:sequence>
+          <xsd:element name="appserver" type="xsd:string"/>
+          <xsd:element name="authserver" type="xsd:string"/>
+          <xsd:element name="dbserver" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GenericRequestType"><xsd:sequence><xsd:any minOccurs="0"/></xsd:sequence></xsd:complexType>
+      <xsd:complexType name="GenericResponseType"><xsd:sequence><xsd:any minOccurs="0"/></xsd:sequence></xsd:complexType>
+      <xsd:element name="consultarTiposRetenciones" type="tns:GenericRequestType"/>
+      <xsd:element name="consultarTiposRetencionesResponse" type="tns:GenericResponseType"/>
+      <xsd:element name="consultarTiposMotivosRechazo" type="tns:GenericRequestType"/>
+      <xsd:element name="consultarTiposMotivosRechazoResponse" type="tns:GenericResponseType"/>
+      <xsd:element name="consultarTiposFormasCancelacion" type="tns:GenericRequestType"/>
+      <xsd:element name="consultarTiposFormasCancelacionResponse" type="tns:GenericResponseType"/>
+      <xsd:element name="consultarCtaCte" type="tns:GenericRequestType"/>
+      <xsd:element name="consultarCtaCteResponse" type="tns:GenericResponseType"/>
+      <xsd:element name="consultarComprobantes" type="tns:GenericRequestType"/>
+      <xsd:element name="consultarComprobantesResponse" type="tns:GenericResponseType"/>
+      <xsd:element name="consultarCtasCtes" type="tns:GenericRequestType"/>
+      <xsd:element name="consultarCtasCtesResponse" type="tns:GenericResponseType"/>
+      <xsd:element name="aceptarFECred" type="tns:GenericRequestType"/>
+      <xsd:element name="aceptarFECredResponse" type="tns:GenericResponseType"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="dummyRequest">
+    <wsdl:part element="tns:dummy" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="dummyResponse">
+    <wsdl:part element="tns:dummyResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultarTiposRetencionesRequest"><wsdl:part element="tns:consultarTiposRetenciones" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarTiposRetencionesResponse"><wsdl:part element="tns:consultarTiposRetencionesResponse" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarTiposMotivosRechazoRequest"><wsdl:part element="tns:consultarTiposMotivosRechazo" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarTiposMotivosRechazoResponse"><wsdl:part element="tns:consultarTiposMotivosRechazoResponse" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarTiposFormasCancelacionRequest"><wsdl:part element="tns:consultarTiposFormasCancelacion" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarTiposFormasCancelacionResponse"><wsdl:part element="tns:consultarTiposFormasCancelacionResponse" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarCtaCteRequest"><wsdl:part element="tns:consultarCtaCte" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarCtaCteResponse"><wsdl:part element="tns:consultarCtaCteResponse" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarComprobantesRequest"><wsdl:part element="tns:consultarComprobantes" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarComprobantesResponse"><wsdl:part element="tns:consultarComprobantesResponse" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarCtasCtesRequest"><wsdl:part element="tns:consultarCtasCtes" name="parameters"/></wsdl:message>
+  <wsdl:message name="consultarCtasCtesResponse"><wsdl:part element="tns:consultarCtasCtesResponse" name="parameters"/></wsdl:message>
+  <wsdl:message name="aceptarFECredRequest"><wsdl:part element="tns:aceptarFECred" name="parameters"/></wsdl:message>
+  <wsdl:message name="aceptarFECredResponse"><wsdl:part element="tns:aceptarFECredResponse" name="parameters"/></wsdl:message>
+  <wsdl:portType name="FECredServicePortType">
+    <wsdl:operation name="dummy">
+      <wsdl:input message="tns:dummyRequest"/>
+      <wsdl:output message="tns:dummyResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposRetenciones">
+      <wsdl:input message="tns:consultarTiposRetencionesRequest"/>
+      <wsdl:output message="tns:consultarTiposRetencionesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposMotivosRechazo">
+      <wsdl:input message="tns:consultarTiposMotivosRechazoRequest"/>
+      <wsdl:output message="tns:consultarTiposMotivosRechazoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposFormasCancelacion">
+      <wsdl:input message="tns:consultarTiposFormasCancelacionRequest"/>
+      <wsdl:output message="tns:consultarTiposFormasCancelacionResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCtaCte">
+      <wsdl:input message="tns:consultarCtaCteRequest"/>
+      <wsdl:output message="tns:consultarCtaCteResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarComprobantes">
+      <wsdl:input message="tns:consultarComprobantesRequest"/>
+      <wsdl:output message="tns:consultarComprobantesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCtasCtes">
+      <wsdl:input message="tns:consultarCtasCtesRequest"/>
+      <wsdl:output message="tns:consultarCtasCtesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="aceptarFECred">
+      <wsdl:input message="tns:aceptarFECredRequest"/>
+      <wsdl:output message="tns:aceptarFECredResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FECredServiceSoap11Binding" type="tns:FECredServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="dummy">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/dummy"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposRetenciones">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/consultarTiposRetenciones"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposMotivosRechazo">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/consultarTiposMotivosRechazo"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarTiposFormasCancelacion">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/consultarTiposFormasCancelacion"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCtaCte">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/consultarCtaCte"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarComprobantes">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/consultarComprobantes"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCtasCtes">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/consultarCtasCtes"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aceptarFECred">
+      <soap:operation soapAction="https://ar.gob.afip.wsfecred/FECredService/aceptarFECred"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FECredService">
+    <wsdl:port binding="tns:FECredServiceSoap11Binding" name="FECredServiceHttpSoap11Endpoint">
+      <soap:address location="https://fwshomo.afip.gov.ar/wsfecred/FECredService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

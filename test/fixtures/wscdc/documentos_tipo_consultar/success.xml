@@ -1,0 +1,16 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <DocumentosTipoConsultarResponse xmlns="http://servicios1.afip.gov.ar/wscdc/">
+      <DocumentosTipoConsultarResult>
+        <ResultGet>
+          <DocTipo>
+            <Id>80</Id>
+            <Desc>CUIT</Desc>
+            <FchDesde>20080725</FchDesde>
+            <FchHasta>NULL</FchHasta>
+          </DocTipo>
+        </ResultGet>
+      </DocumentosTipoConsultarResult>
+    </DocumentosTipoConsultarResponse>
+  </soap:Body>
+</soap:Envelope>

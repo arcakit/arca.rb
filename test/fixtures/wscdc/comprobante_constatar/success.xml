@@ -1,0 +1,22 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ComprobanteConstatarResponse xmlns="http://servicios1.afip.gov.ar/wscdc/">
+      <ComprobanteConstatarResult>
+        <CmpResp>
+          <CbteModo>CAE</CbteModo>
+          <CuitEmisor>20000000001</CuitEmisor>
+          <PtoVta>1</PtoVta>
+          <CbteTipo>1</CbteTipo>
+          <CbteNro>2</CbteNro>
+          <CbteFch>20101014</CbteFch>
+          <ImpTotal>300.8</ImpTotal>
+          <CodAutorizacion>60428000005029</CodAutorizacion>
+          <DocTipoReceptor>80</DocTipoReceptor>
+          <DocNroReceptor>30000000007</DocNroReceptor>
+        </CmpResp>
+        <Resultado>A</Resultado>
+        <FchProceso>20130729204436</FchProceso>
+      </ComprobanteConstatarResult>
+    </ComprobanteConstatarResponse>
+  </soap:Body>
+</soap:Envelope>

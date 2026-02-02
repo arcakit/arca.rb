@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarTiposRetencionesResponse xmlns:ns2="https://ar.gob.afip.wsfecred/FECredService/">
+      <consultarTiposRetencionesReturn>
+        <arrayTiposRetenciones>
+          <tipoRetencion>
+            <codigo>1</codigo>
+            <descripcion>Retención 1</descripcion>
+          </tipoRetencion>
+        </arrayTiposRetenciones>
+      </consultarTiposRetencionesReturn>
+    </ns2:consultarTiposRetencionesResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,11 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:dummyResponse xmlns:ns2="http://impl.service.wsrgiva.afip.gov.ar/RegimenPercepcionIVAService/">
+      <return>
+        <appserver>OK</appserver>
+        <authserver>OK</authserver>
+        <dbserver>OK</dbserver>
+      </return>
+    </ns2:dummyResponse>
+  </soap:Body>
+</soap:Envelope>

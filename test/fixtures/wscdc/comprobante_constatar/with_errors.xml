@@ -1,0 +1,28 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ComprobanteConstatarResponse xmlns="http://servicios1.afip.gov.ar/wscdc/">
+      <ComprobanteConstatarResult>
+        <CmpResp>
+          <CbteModo>CAE</CbteModo>
+          <CuitEmisor>222222222222</CuitEmisor>
+          <PtoVta>1</PtoVta>
+          <CbteTipo>1</CbteTipo>
+          <CbteNro>2</CbteNro>
+          <CbteFch>20101014</CbteFch>
+          <ImpTotal>300.8</ImpTotal>
+          <CodAutorizacion>60428000005029</CodAutorizacion>
+          <DocTipoReceptor>80</DocTipoReceptor>
+          <DocNroReceptor>20000000001</DocNroReceptor>
+        </CmpResp>
+        <Resultado>R</Resultado>
+        <FchProceso>20130729205502</FchProceso>
+        <Errors>
+          <Err>
+            <Code>2</Code>
+            <Msg>El campo CuitEmisor es invalido.</Msg>
+          </Err>
+        </Errors>
+      </ComprobanteConstatarResult>
+    </ComprobanteConstatarResponse>
+  </soap:Body>
+</soap:Envelope>

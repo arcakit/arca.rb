@@ -1,0 +1,13 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarCtaCteResponse xmlns:ns2="https://ar.gob.afip.wsfecred/FECredService/">
+      <consultarCtaCteReturn>
+        <ctaCte>
+          <codCtaCte>12345</codCtaCte>
+          <estado>Activa</estado>
+        </ctaCte>
+        <arrayObservaciones/>
+      </consultarCtaCteReturn>
+    </ns2:consultarCtaCteResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarTiposFormasCancelacionResponse xmlns:ns2="https://ar.gob.afip.wsfecred/FECredService/">
+      <consultarTiposFormasCancelacionReturn>
+        <arrayCodigoDescripcion>
+          <codigoDescripcion>
+            <codigo>1</codigo>
+            <descripcion>Forma cancelación 1</descripcion>
+          </codigoDescripcion>
+        </arrayCodigoDescripcion>
+      </consultarTiposFormasCancelacionReturn>
+    </ns2:consultarTiposFormasCancelacionResponse>
+  </soap:Body>
+</soap:Envelope>

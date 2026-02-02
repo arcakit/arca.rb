@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:consultarTiposMotivosRechazoResponse xmlns:ns2="https://ar.gob.afip.wsfecred/FECredService/">
+      <consultarTiposMotivosRechazoReturn>
+        <arrayCodigoDescripcion>
+          <codigoDescripcion>
+            <codigo>1</codigo>
+            <descripcion>Motivo rechazo 1</descripcion>
+          </codigoDescripcion>
+        </arrayCodigoDescripcion>
+      </consultarTiposMotivosRechazoReturn>
+    </ns2:consultarTiposMotivosRechazoResponse>
+  </soap:Body>
+</soap:Envelope>

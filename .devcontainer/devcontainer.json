@@ -1,0 +1,12 @@
+{
+    "name": "arca",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": { "RUBY_VERSION": "3.4.7" }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "postCreateCommand": "bundle install && rake"
+}

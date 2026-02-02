@@ -1,0 +1,22 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ComprobantesTipoConsultarResponse xmlns="http://servicios1.afip.gov.ar/wscdc/">
+      <ComprobantesTipoConsultarResult>
+        <ResultGet>
+          <CbteTipo>
+            <Id>1</Id>
+            <Desc>Factura A</Desc>
+            <FchDesde>20100917</FchDesde>
+            <FchHasta>NULL</FchHasta>
+          </CbteTipo>
+          <CbteTipo>
+            <Id>6</Id>
+            <Desc>Factura B</Desc>
+            <FchDesde>20100917</FchDesde>
+            <FchHasta>NULL</FchHasta>
+          </CbteTipo>
+        </ResultGet>
+      </ComprobantesTipoConsultarResult>
+    </ComprobantesTipoConsultarResponse>
+  </soap:Body>
+</soap:Envelope>
