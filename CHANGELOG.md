@@ -1,5 +1,9 @@
 # Arca Changelog
 
+## [1.0.1] - 2025-02-05
+- Fix ruta hardcodeada de certificados SSL CA. Usar OpenSSL::X509::DEFAULT_CERT_FILE en lugar de la ruta hardcodeada
+/etc/ssl/certs/ca-certificates.crt para soportar múltiples plataformas.
+
 ## [1.0.0] - 2025-01-31
 
 - Primer release.

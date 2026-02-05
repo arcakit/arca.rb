@@ -7,8 +7,7 @@ module Arca
         soap_version: 2,
         ssl_version: :TLSv1_2,
         ssl_ciphers: "DEFAULT:!DH:!DHE",
-        # This will load the CA certificates from the system's certificate store.
-        ssl_ca_cert_file: "/etc/ssl/certs/ca-certificates.crt"
+        ssl_ca_cert_file: OpenSSL::X509::DEFAULT_CERT_FILE
       )
 
       @savon = Savon.client savon_opts
