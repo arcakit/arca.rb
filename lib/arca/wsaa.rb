@@ -116,9 +116,9 @@ module Arca
       temp_path = "#{@ta_path}.#{Process.pid}.tmp"
       File.write(temp_path, JSON.generate(payload))
       File.rename(temp_path, @ta_path)
-    rescue StandardError
+    rescue StandardError => e
       File.delete(temp_path) if defined?(temp_path) && File.exist?(temp_path)
-      raise
+      raise ServerError, e
     end
 
     def xsd_datetime(time)
