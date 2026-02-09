@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email       = [ 'hola@arcakit.dev' ]
   s.homepage    = 'https://arcakit.dev'
   s.summary     = 'Cliente Ruby para webservices de AFIP/ARCA: facturación electrónica, comprobantes y servicios tributarios de Argentina'
-  s.description = 'Cliente Ruby para integrar webservices SOAP de ARCA/AFIPen Argentina. Soporta facturación electrónica (WSFE), factura electrónica de crédito MiPyMEs (WSFeCred), autenticación WSAA, consulta de padrón de contribuyentes, constatación de comprobantes fiscales y todos los servicios tributarios de la API de AFIP. Ideal para aplicaciones Rails que necesitan generar facturas electrónicas y comprobantes en Argentina.'
+  s.description = 'Cliente Ruby para integrar webservices SOAP de ARCA/AFIP en Argentina.'
   s.license     = 'MIT'
 
   s.files         = `git ls-files`.split("\n")

@@ -76,5 +76,15 @@ module Arca
       subject.auth
       assert_equal "t2", subject.ta[:token]
     end
+
+    def test_persist_ta_encapsula_errores_en_server_error
+      File.stubs(:write).raises(Errno::EACCES.new("Permission denied"))
+      ta = { token: "t", sign: "s", generation_time: Time.now, expiration_time: Time.now + 60 }
+      ws = WSAA.new(wsdl: Arca::WSFE::WSDL[:test])
+
+      error = assert_raises(ServerError) { ws.send(:persist_ta, ta) }
+      assert_equal Errno::EACCES, error.cause.class
+      assert_match(/Permission denied/, error.cause.message)
+    end
   end
 end

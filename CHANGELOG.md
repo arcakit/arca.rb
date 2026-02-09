@@ -1,5 +1,11 @@
 # Arca Changelog
 
+## [1.0.2] - 2025-02-09
+
+- **Errores:** En WSAA, `persist_ta` ahora encapsula fallos en `Arca::ServerError` en lugar de re-levantar excepciones crudas (mejor encapsulación y menos riesgo de filtrar datos sensibles en logs).
+- **Test:** Añadido test que verifica que `persist_ta` levanta `ServerError` con la excepción original en `cause`.
+- Actualización de gems/dependencias.
+
 ## [1.0.1] - 2025-02-05
 - Fix ruta hardcodeada de certificados SSL CA. Usar OpenSSL::X509::DEFAULT_CERT_FILE en lugar de la ruta hardcodeada
 /etc/ssl/certs/ca-certificates.crt para soportar múltiples plataformas.

@@ -116,13 +116,13 @@ module Arca
       temp_path = "#{@ta_path}.#{Process.pid}.tmp"
       File.write(temp_path, JSON.generate(payload))
       File.rename(temp_path, @ta_path)
-    rescue StandardError
+    rescue StandardError => e
       File.delete(temp_path) if defined?(temp_path) && File.exist?(temp_path)
-      raise
+      raise ServerError, e
     end
 
     def xsd_datetime(time)
-      time.strftime("%Y-%m-%dT%H:%M:%S%z").sub /(\d{2})(\d{2})$/, '\1:\2'
+      time.strftime("%Y-%m-%dT%H:%M:%S%z").sub(/(\d{2})(\d{2})$/, '\1:\2')
     end
 
     def from_xsd_datetime(str)
