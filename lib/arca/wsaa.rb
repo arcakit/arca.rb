@@ -122,7 +122,7 @@ module Arca
     end
 
     def xsd_datetime(time)
-      time.strftime("%Y-%m-%dT%H:%M:%S%z").sub /(\d{2})(\d{2})$/, '\1:\2'
+      time.strftime("%Y-%m-%dT%H:%M:%S%z").sub(/(\d{2})(\d{2})$/, '\1:\2')
     end
 
     def from_xsd_datetime(str)
