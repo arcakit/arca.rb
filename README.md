@@ -75,7 +75,7 @@ Opción del constructor: `env: :development` o `env: :production` (symbol o stri
 
 ## Uso
 
-Opciones comunes del constructor: `env`, `cuit`, `key`, `cert`. Opcionales: `savon` (hash pasado a Savon), `ta_path` (WSAA), etc.
+Opciones comunes del constructor: `env`, `cuit`, `key`, `cert`. Opcionales: `savon` (hash pasado a Savon), `ta_path` (WSAA, path del archivo TA), `store` (WSAA, objeto con `read`/`write` para guardar TA en backend propio), etc.
 
 ### Cliente de bajo nivel (`Arca::Client`)
 
@@ -111,6 +111,11 @@ Token y sign son usados internamente por otros servicios; podés llamar WSAA dir
 wsaa = Arca::WSAA.new(env: :development, cuit: '20123456789', key: key, cert: cert)
 auth = wsaa.auth  # => { token: '...', sign: '...' }
 ```
+
+Opcionalmente podés pasar un **store** para guardar el TA en tu propio backend (por ejemplo DB por tenant con cifrado). Sin `store`, se usa un archivo JSON en `tmp/`. El store debe implementar:
+
+- **`read(cuit:, env:, service:)`** — devuelve `nil` o un Hash con claves simbólicas: `:token`, `:sign`, `:generation_time`, `:expiration_time` (Time o string ISO8601).
+- **`write(cuit:, env:, service:, ta:, expires_at:)`** — se invoca después de un `#login` exitoso; `ta` es el hash del TA y `expires_at` el Time de vencimiento.
 
 ### WSFE (Factura Electrónica)
 ```ruby

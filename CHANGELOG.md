@@ -1,5 +1,9 @@
 # Arca Changelog
 
+## [1.1.0]
+
+- **WSAA:** Store opcional para TA. Podés pasar `store:` con un objeto que implemente `read(cuit:, env:, service:)` y `write(cuit:, env:, service:, ta:, expires_at:)` para guardar el token en tu backend (p. ej. DB por tenant con cifrado). Sin `store`, se sigue usando el archivo JSON en `tmp/`.
+
 ## [1.0.2] - 2025-02-09
 
 - **Errores:** En WSAA, `persist_ta` ahora encapsula fallos en `Arca::ServerError` en lugar de re-levantar excepciones crudas (mejor encapsulación y menos riesgo de filtrar datos sensibles en logs).
