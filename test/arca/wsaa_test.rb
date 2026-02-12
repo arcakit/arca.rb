@@ -86,5 +86,62 @@ module Arca
       assert_equal Errno::EACCES, error.cause.class
       assert_match(/Permission denied/, error.cause.message)
     end
+
+    def test_auth_con_store_usa_read_y_no_llama_login_si_ta_valido
+      Time.stubs(:now).returns(Time.local(2010, 1, 1))
+      ta = { token: "stored-token", sign: "stored-sign", generation_time: Time.now, expiration_time: Time.now + 3600 }
+      store = Object.new
+      store.expects(:read).with(cuit: "20123456789", env: :test, service: "wsfe").returns(ta)
+
+      ws = WSAA.new(cuit: "20123456789", env: :test, service: "wsfe", wsdl: Arca::WSFE::WSDL[:test], store: store)
+      ws.expects(:login).never
+
+      assert_equal({ token: "stored-token", sign: "stored-sign" }, ws.auth)
+    end
+
+    def test_auth_con_store_llama_login_y_write_cuando_read_devuelve_nil
+      Time.stubs(:now).returns(Time.local(2010, 1, 1))
+      ta = { token: "new-token", sign: "new-sign", generation_time: Time.now, expiration_time: Time.now + 60 }
+      store = Object.new
+      store.expects(:read).with(cuit: "20123456789", env: :test, service: "wsfe").returns(nil)
+      store.expects(:write).with(cuit: "20123456789", env: :test, service: "wsfe", ta: ta, expires_at: ta[:expiration_time]).returns(nil)
+
+      ws = WSAA.new(cuit: "20123456789", env: :test, service: "wsfe", wsdl: Arca::WSFE::WSDL[:test], store: store)
+      ws.expects(:login).returns(ta)
+
+      ws.auth
+    end
+
+    def test_auth_con_store_normaliza_tiempos_iso8601_de_read
+      Time.stubs(:now).returns(Time.local(2010, 1, 1))
+      gen_str = "2010-01-01T00:00:00-03:00"
+      exp_str = "2010-01-01T02:00:00-03:00"
+      store = Object.new
+      store.expects(:read).with(cuit: "20123456789", env: :test, service: "wsfe").returns({ token: "t", sign: "s", generation_time: gen_str, expiration_time: exp_str })
+
+      ws = WSAA.new(cuit: "20123456789", env: :test, service: "wsfe", wsdl: Arca::WSFE::WSDL[:test], store: store)
+      ws.expects(:login).never
+
+      ws.auth
+      assert_instance_of(Time, ws.ta[:generation_time])
+      assert_instance_of(Time, ws.ta[:expiration_time])
+      assert_equal(Time.parse(gen_str), ws.ta[:generation_time])
+      assert_equal(Time.parse(exp_str), ws.ta[:expiration_time])
+    end
+
+    def test_persist_ta_con_store_encapsula_errores_en_server_error
+      ta = { token: "t", sign: "s", generation_time: Time.now, expiration_time: Time.now + 60 }
+      store = Class.new do
+        def read(*) nil end
+        def write(*) raise Errno::EACCES, "Permission denied" end
+      end.new
+
+      ws = WSAA.new(cuit: "1", env: :test, service: "wsfe", wsdl: Arca::WSFE::WSDL[:test], store: store)
+      assert_same store, ws.store
+
+      error = assert_raises(ServerError) { ws.send(:persist_ta, ta) }
+      assert_equal Errno::EACCES, error.cause.class
+      assert_match(/Permission denied/, error.cause.message)
+    end
   end
 end

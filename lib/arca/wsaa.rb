@@ -4,7 +4,7 @@ require "json"
 
 module Arca
   class WSAA
-    attr_reader :key, :cert, :service, :ta, :cuit, :client, :env
+    attr_reader :key, :cert, :service, :ta, :cuit, :client, :env, :store
 
     WSDL = {
       development: "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl",
@@ -20,6 +20,7 @@ module Arca
       @ttl = options[:ttl] || 2400
       @cuit = options[:cuit]
       @client = Client.new Hash(options[:savon]).reverse_merge(wsdl: WSDL[@env])
+      @store = options[:store]
       @ta_path = options[:ta_path] || default_ta_path
     end
 
@@ -79,6 +80,10 @@ module Arca
     end
 
     def restore_ta
+      if @store
+        return restore_ta_from_store
+      end
+
       return nil unless File.exist?(@ta_path) && !File.empty?(@ta_path)
 
       data = JSON.parse(File.read(@ta_path))
@@ -89,6 +94,27 @@ module Arca
         expiration_time: data["expiration_time"] && Time.parse(data["expiration_time"])
       }
     rescue JSON::ParserError, ArgumentError
+      nil
+    end
+
+    def restore_ta_from_store
+      h = @store.read(cuit: @cuit, env: @env, service: @service)
+      return nil if h.nil? || !h.is_a?(Hash)
+
+      {
+        token: h[:token],
+        sign: h[:sign],
+        generation_time: normalize_ta_time(h[:generation_time]),
+        expiration_time: normalize_ta_time(h[:expiration_time])
+      }
+    end
+
+    def normalize_ta_time(value)
+      return nil if value.nil?
+      return value if value.is_a?(Time)
+
+      Time.parse(value.to_s)
+    rescue ArgumentError
       nil
     end
 
@@ -103,6 +129,25 @@ module Arca
     end
 
     def persist_ta(ta)
+      if @store
+        begin
+          @store.write(
+            cuit: @cuit,
+            env: @env,
+            service: @service,
+            ta: ta,
+            expires_at: ta[:expiration_time]
+          )
+        rescue StandardError => e
+          raise ServerError, e
+        end
+        return
+      end
+
+      persist_ta_to_file(ta)
+    end
+
+    def persist_ta_to_file(ta)
       dir = File.dirname(@ta_path)
       FileUtils.mkdir_p(dir)
 
