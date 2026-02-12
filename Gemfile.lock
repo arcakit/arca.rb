@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arca.rb (1.0.2)
+    arca.rb (1.1.0)
       activesupport
       builder
       httpclient
