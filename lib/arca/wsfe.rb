@@ -60,8 +60,9 @@ module Arca
       x2r get_array(r, :tributo_tipo), id: :integer, fch_desde: :date, fch_hasta: :date
     end
 
-    def tipos_condicion_iva_receptor
-      r = request :fe_param_get_condicion_iva_receptor, auth
+    def tipos_condicion_iva_receptor(clase_cmp: nil)
+      params = clase_cmp ? auth.merge("ClaseCmp" => clase_cmp) : auth
+      r = request :fe_param_get_condicion_iva_receptor, params
       x2r get_array(r, :condicion_iva_receptor), id: :integer
     end
 

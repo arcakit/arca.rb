@@ -63,6 +63,20 @@ module Arca
                    ws.tipos_tributos
     end
 
+    def test_tipos_condicion_iva_receptor
+      savon.expects(:fe_param_get_condicion_iva_receptor).with(message: auth)
+           .returns(fixture("wsfe/fe_param_get_condicion_iva_receptor/success"))
+      result = ws.tipos_condicion_iva_receptor
+      assert_equal 1, result.first[:id]
+    end
+
+    def test_tipos_condicion_iva_receptor_con_clase_cmp
+      savon.expects(:fe_param_get_condicion_iva_receptor)
+           .with(message: has_path("//Auth/Token" => "t", "//ClaseCmp" => "A"))
+           .returns(fixture("wsfe/fe_param_get_condicion_iva_receptor/success"))
+      ws.tipos_condicion_iva_receptor(clase_cmp: "A")
+    end
+
     def test_actividades
       savon.expects(:fe_param_get_actividades).with(message: auth).returns(fixture("wsfe/fe_param_get_actividades/success"))
       assert_equal [

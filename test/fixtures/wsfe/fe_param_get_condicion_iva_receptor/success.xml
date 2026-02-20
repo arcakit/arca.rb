@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <FEParamGetCondicionIvaReceptorResponse xmlns="http://ar.gov.afip.dif.FEV1/">
+      <FEParamGetCondicionIvaReceptorResult>
+        <ResultGet>
+          <CondicionIvaReceptor>
+            <Id>1</Id>
+            <Desc>IVA Responsable Inscripto</Desc>
+          </CondicionIvaReceptor>
+        </ResultGet>
+      </FEParamGetCondicionIvaReceptorResult>
+    </FEParamGetCondicionIvaReceptorResponse>
+  </soap:Body>
+</soap:Envelope>
