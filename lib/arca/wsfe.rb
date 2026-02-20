@@ -65,6 +65,11 @@ module Arca
       x2r get_array(r, :condicion_iva_receptor), id: :integer
     end
 
+    def actividades
+      r = request :fe_param_get_actividades, auth
+      x2r get_array(r, :actividades_tipo), id: :integer, orden: :integer
+    end
+
     def puntos_venta
       r = request :fe_param_get_ptos_venta, auth
       # Extract standard fields: nro, fch_baja, bloqueado
@@ -165,6 +170,11 @@ module Arca
 
     def informar_caea_sin_movimientos(caea, pto_vta)
       request :fecaea_sin_movimiento_informar, auth.merge("CAEA" => caea, "PtoVta" => pto_vta)
+    end
+
+    def consultar_caea_sin_movimientos(caea, pto_vta)
+      r = request :fecaea_sin_movimiento_consultar, auth.merge("CAEA" => caea, "PtoVta" => pto_vta)
+      x2r get_array(r, :fecaea_sin_mov), pto_vta: :integer
     end
 
     def ultimo_comprobante_autorizado(opciones)
