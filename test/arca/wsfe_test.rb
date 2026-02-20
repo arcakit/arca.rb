@@ -63,6 +63,28 @@ module Arca
                    ws.tipos_tributos
     end
 
+    def test_tipos_condicion_iva_receptor
+      savon.expects(:fe_param_get_condicion_iva_receptor).with(message: auth)
+           .returns(fixture("wsfe/fe_param_get_condicion_iva_receptor/success"))
+      result = ws.tipos_condicion_iva_receptor
+      assert_equal 1, result.first[:id]
+    end
+
+    def test_tipos_condicion_iva_receptor_con_clase_cmp
+      savon.expects(:fe_param_get_condicion_iva_receptor)
+           .with(message: has_path("//Auth/Token" => "t", "//ClaseCmp" => "A"))
+           .returns(fixture("wsfe/fe_param_get_condicion_iva_receptor/success"))
+      ws.tipos_condicion_iva_receptor(clase_cmp: "A")
+    end
+
+    def test_actividades
+      savon.expects(:fe_param_get_actividades).with(message: auth).returns(fixture("wsfe/fe_param_get_actividades/success"))
+      assert_equal [
+        { id: 620000, orden: 1, desc: "Telecomunicaciones alámbricas" },
+        { id: 620100, orden: 2, desc: "Telecomunicaciones inalámbricas" }
+      ], ws.actividades
+    end
+
     def test_puntos_venta
       savon.expects(:fe_param_get_ptos_venta).with(message: auth).returns(fixture("wsfe/fe_param_get_ptos_venta/success"))
       assert_equal [
@@ -213,6 +235,14 @@ module Arca
       )).returns(fixture("wsfe/fecaea_sin_movimiento_informar/success"))
       rta = ws.informar_caea_sin_movimientos("21043476341977", 4)
       assert_hash_includes rta, caea: "21043476341977", resultado: "A"
+    end
+
+    def test_consultar_caea_sin_movimientos
+      savon.expects(:fecaea_sin_movimiento_consultar).with(message: has_path(
+        "//Auth/Token" => "t", "//CAEA" => "21043476341977", "//PtoVta" => 3
+      )).returns(fixture("wsfe/fecaea_sin_movimiento_consultar/success"))
+      assert_equal [{ caea: "21043476341977", fch_proceso: "20110202", pto_vta: 3 }],
+                   ws.consultar_caea_sin_movimientos("21043476341977", 3)
     end
 
     def test_consultar_caea

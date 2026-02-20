@@ -1,0 +1,20 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <FEParamGetActividadesResponse xmlns="http://ar.gov.afip.dif.FEV1/">
+      <FEParamGetActividadesResult>
+        <ResultGet>
+          <ActividadesTipo>
+            <Id>620000</Id>
+            <Orden>1</Orden>
+            <Desc>Telecomunicaciones alámbricas</Desc>
+          </ActividadesTipo>
+          <ActividadesTipo>
+            <Id>620100</Id>
+            <Orden>2</Orden>
+            <Desc>Telecomunicaciones inalámbricas</Desc>
+          </ActividadesTipo>
+        </ResultGet>
+      </FEParamGetActividadesResult>
+    </FEParamGetActividadesResponse>
+  </soap:Body>
+</soap:Envelope>

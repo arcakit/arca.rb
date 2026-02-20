@@ -1,5 +1,11 @@
 # Arca Changelog
 
+## [1.1.1] - 2025-02-20
+
+- **WSFE:** Added `tipos_condicion_iva_receptor(clase_cmp: nil)` to query IVA receptor conditions with optional invoice class filter.
+- **WSFE:** Added `actividades` to retrieve list of economic activities.
+- **WSFE:** Added `consultar_caea_sin_movimientos(caea, pto_vta)` to query CAEA without movements.
+
 ## [1.1.0]
 
 - **WSAA:** Store opcional para TA. Podés pasar `store:` con un objeto que implemente `read(cuit:, env:, service:)` y `write(cuit:, env:, service:, ta:, expires_at:)` para guardar el token en tu backend (p. ej. DB por tenant con cifrado). Sin `store`, se sigue usando el archivo JSON en `tmp/`.
