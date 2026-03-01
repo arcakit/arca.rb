@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <consultarEstadosResponse xmlns="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <Estados>
+        <Estado>
+          <id>1</id>
+          <descripcion>Comunicacion No Leida</descripcion>
+        </Estado>
+        <Estado>
+          <id>2</id>
+          <descripcion>Comunicacion Leida</descripcion>
+        </Estado>
+      </Estados>
+    </consultarEstadosResponse>
+  </soap:Body>
+</soap:Envelope>

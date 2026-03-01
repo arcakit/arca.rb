@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <consumirComunicacionResponse xmlns="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <Comunicacion>
+        <idComunicacion>12061068</idComunicacion>
+        <cuitDestinatario>20111111112</cuitDestinatario>
+        <fechaPublicacion>2011-04-18 13:06:00</fechaPublicacion>
+        <sistemaPublicador>1</sistemaPublicador>
+        <sistemaPublicadorDesc>Sistema Ventanilla Electronica</sistemaPublicadorDesc>
+        <estado>1</estado>
+        <estadoDesc>Comunicacion No Leida</estadoDesc>
+        <asunto>Actualizacion de Certificado</asunto>
+        <prioridad>2</prioridad>
+        <adjuntos/>
+      </Comunicacion>
+    </consumirComunicacionResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -13,6 +13,7 @@ Cliente Ruby para integrar webservices SOAP de AFIP y ARCA en Argentina. Soporta
 - **Autenticación WSAA** - Manejo automático de tokens y certificados
 - **Producción y homologación** - Ambientes configurables
 - **Padrón AFIP** - Consulta de contribuyentes (A4, A5, A100)
+- **Ventanilla Electrónica (VEConsumer)** - Consulta y lectura de comunicaciones de AFIP
 
 ## Requisitos
 
@@ -72,6 +73,7 @@ Opción del constructor: `env: :development` o `env: :production` (symbol o stri
 | WS Constancia Inscripción | `Arca::WSConstanciaInscripcion` | Constancia de inscripción |
 | Padrón A4 / A5 / A100 | `Arca::PersonaServiceA4`, `PersonaServiceA5`, `PersonaServiceA100` | Consulta padrón de contribuyentes |
 | WConsDeclaracion | `Arca::WConsDeclaracion` | Declaraciones aduaneras |
+| VEConsumer | `Arca::VEConsumer` | Ventanilla Electrónica — comunicaciones del contribuyente |
 
 ## Uso
 
@@ -171,6 +173,33 @@ padron.get_persona('20123456789')
 ```ruby
 ws = Arca::WSConstanciaInscripcion.new(env: :development, cuit: '20123456789', key: key, cert: cert)
 ws.get_persona('20123456789')
+```
+
+### VEConsumer (Ventanilla Electrónica)
+```ruby
+ws = Arca::VEConsumer.new(env: :development, cuit: '20123456789', key: key, cert: cert)
+
+# Consultar comunicaciones (paginado, con filtros opcionales)
+r = ws.consultar_comunicaciones(estado: 1, pagina: 1)
+r[:items]          # Array de ComunicacionSimplificada
+r[:total_paginas]  # total de páginas
+
+# Leer una comunicación (la marca como leída)
+com = ws.consumir_comunicacion(12_061_068)
+com[:estado]       # "2" (leída)
+com[:adjuntos]     # [] si no tiene adjuntos
+
+# Leer con adjuntos binarios vía MTOM
+com = ws.consumir_comunicacion(12_061_068, incluir_adjuntos: true)
+com[:adjuntos][0][:filename]  # "informe.pdf"
+com[:adjuntos][0][:content]   # contenido binario (String)
+
+# Sistemas publicadores habilitados
+ws.consultar_sistemas_publicadores
+ws.consultar_sistemas_publicadores(id_sistema_publicador: 88)
+
+# Estados posibles (1=No leída, 2=Leída)
+ws.consultar_estados
 ```
 
 ### WConsDeclaracion (Declaraciones aduaneras)

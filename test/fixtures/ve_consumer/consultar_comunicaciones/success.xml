@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <consultarComunicacionesResponse xmlns="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <RespuestaPaginada>
+        <pagina>1</pagina>
+        <totalPaginas>1</totalPaginas>
+        <itemsPorPagina>10</itemsPorPagina>
+        <totalItems>1</totalItems>
+        <items>
+          <ComunicacionSimplificada>
+            <idComunicacion>1</idComunicacion>
+            <cuitDestinatario>20111111112</cuitDestinatario>
+            <fechaPublicacion>2012-03-01 00:00:00</fechaPublicacion>
+            <fechaVencimiento>2012-03-01</fechaVencimiento>
+            <sistemaPublicador>19</sistemaPublicador>
+            <sistemaPublicadorDesc>Osiris</sistemaPublicadorDesc>
+            <estado>2</estado>
+            <estadoDesc>Comunicacion Leida</estadoDesc>
+            <asunto>Usted tiene un archivo adjunto</asunto>
+            <prioridad>3</prioridad>
+            <tieneAdjunto>true</tieneAdjunto>
+          </ComunicacionSimplificada>
+        </items>
+      </RespuestaPaginada>
+    </consultarComunicacionesResponse>
+  </soap:Body>
+</soap:Envelope>
