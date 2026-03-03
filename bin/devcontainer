@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+
+# Add Charm apt repo for gum and gitleaks
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/charm.gpg > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends \
+  ca-certificates \
+  curl \
+  gh \
+  gum \
+  zlib1g-dev
+
+sudo rm -rf /var/lib/apt/lists/*
+
+if ! command -v mise >/dev/null 2>&1; then
+  curl -fsSL https://mise.jdx.dev/install.sh | sh
+  ln -sfn "$HOME/.local/bin/mise" /usr/local/bin/mise
+  mise trust
+fi
+
+# Claude Code CLI
+curl -fsSL https://claude.ai/install.sh | bash

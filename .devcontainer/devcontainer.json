@@ -1,12 +1,22 @@
 {
-    "name": "arca",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": "..",
-        "args": { "RUBY_VERSION": "3.4.7" }
-    },
-    "features": {
-        "ghcr.io/devcontainers/features/github-cli:1": {}
-    },
-    "postCreateCommand": "bundle install && rake"
+  "name": "arca.rb",
+  "runArgs": [
+    "--name",
+    "arca.rb"
+  ],
+  "image": "ghcr.io/rails/devcontainer/images/ruby:4.0.0",
+  "workspaceFolder": "/workspaces/arca.rb",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/arca.rb,type=bind,consistency=cached",
+  "remoteEnv": {
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
+  },
+  "postCreateCommand": "bin/devcontainer",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "anthropic.claude-code"
+      ]
+    }
+  }
 }

@@ -1,6 +1,6 @@
 # Arca Changelog
 
-## 2025-03-02
+## [1.1.2] 2025-03-02
 
 - **VEConsumer** — Nuevo servicio: Ventanilla Electrónica - Consumir Comunicaciones (`veconsumerws`). Permite consultar y leer comunicaciones enviadas a un contribuyente vía SOAP 1.2.
   - `consultar_comunicaciones(filter = {})` — consulta paginada con filtros opcionales (estado, fechas, sistema publicador, referencias, etc.).
