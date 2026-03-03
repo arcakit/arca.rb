@@ -1,10 +1,19 @@
 # Arca Changelog
 
+## [1.1.2] 2025-03-02
+
+- **VEConsumer** — Nuevo servicio: Ventanilla Electrónica - Consumir Comunicaciones (`veconsumerws`). Permite consultar y leer comunicaciones enviadas a un contribuyente vía SOAP 1.2.
+  - `consultar_comunicaciones(filter = {})` — consulta paginada con filtros opcionales (estado, fechas, sistema publicador, referencias, etc.).
+  - `consumir_comunicacion(id, incluir_adjuntos: false)` — recupera una comunicación y la marca como leída; con `incluir_adjuntos: true` extrae el contenido binario vía MTOM en `adjunto[:content]`.
+  - `consultar_sistemas_publicadores(id_sistema_publicador: nil)` — lista sistemas publicadores habilitados.
+  - `consultar_estados` — lista los posibles estados (1=No leída, 2=Leída).
+  - Los errores SOAP Fault del servicio se traducen a `ResponseError` con soporte para `e.code?`.
+
 ## [1.1.1] - 2025-02-20
 
-- **WSFE:** Added `tipos_condicion_iva_receptor(clase_cmp: nil)` to query IVA receptor conditions with optional invoice class filter.
-- **WSFE:** Added `actividades` to retrieve list of economic activities.
-- **WSFE:** Added `consultar_caea_sin_movimientos(caea, pto_vta)` to query CAEA without movements.
+- **WSFE:** Agregado `tipos_condicion_iva_receptor(clase_cmp: nil)` para consultar condiciones de IVA del receptor con filtro opcional por clase de comprobante.
+- **WSFE:** Agregado `actividades` para obtener el listado de actividades económicas.
+- **WSFE:** Agregado `consultar_caea_sin_movimientos(caea, pto_vta)` para consultar CAEA sin movimientos.
 
 ## [1.1.0]
 

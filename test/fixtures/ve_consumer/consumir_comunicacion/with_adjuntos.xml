@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <consumirComunicacionResponse xmlns="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <Comunicacion>
+        <idComunicacion>12061068</idComunicacion>
+        <cuitDestinatario>20111111112</cuitDestinatario>
+        <fechaPublicacion>2011-07-12 12:21:39</fechaPublicacion>
+        <fechaVencimiento>2011-07-12</fechaVencimiento>
+        <sistemaPublicador>88</sistemaPublicador>
+        <sistemaPublicadorDesc>MDQ</sistemaPublicadorDesc>
+        <estado>1</estado>
+        <estadoDesc>Comunicacion No Leida</estadoDesc>
+        <asunto>Mensaje generado por VeClient</asunto>
+        <prioridad>1</prioridad>
+        <adjuntos>
+          <adjunto>
+            <filename>attach.zip</filename>
+            <compressed>false</compressed>
+            <signed>false</signed>
+            <encrypted>false</encrypted>
+            <processed>false</processed>
+            <public>false</public>
+            <md5>2ea67624b8cc4340a2a6d4821627412d</md5>
+            <contentSize>453</contentSize>
+            <content>
+              <xop:Include href="cid:testcid@test" xmlns:xop="http://www.w3.org/2004/08/xop/include"/>
+            </content>
+          </adjunto>
+        </adjuntos>
+      </Comunicacion>
+    </consumirComunicacionResponse>
+  </soap:Body>
+</soap:Envelope>

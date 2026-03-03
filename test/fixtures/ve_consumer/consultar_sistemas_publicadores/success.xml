@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Body>
+    <consultarSistemasPublicadoresResponse xmlns="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <Sistemas>
+        <Sistema>
+          <id>88</id>
+          <descripcion>MDQ</descripcion>
+          <certCN>mdqCN</certCN>
+          <subservicios/>
+        </Sistema>
+      </Sistemas>
+    </consultarSistemasPublicadoresResponse>
+  </soap:Body>
+</soap:Envelope>

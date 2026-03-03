@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  xmlns:tns="http://ve.tecno.afip.gov.ar/domain/service/ws"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://ve.tecno.afip.gov.ar/domain/service/ws"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <xsd:complexType name="AuthRequestType">
+        <xsd:sequence>
+          <xsd:element name="token" type="xsd:string"/>
+          <xsd:element name="sign" type="xsd:string"/>
+          <xsd:element name="cuitRepresentada" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FilterType">
+        <xsd:sequence>
+          <xsd:element name="estado" type="xsd:int" minOccurs="0"/>
+          <xsd:element name="fechaDesde" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="fechaHasta" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="comunicacionIdDesde" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="comunicacionIdHasta" type="xsd:long" minOccurs="0"/>
+          <xsd:element name="tieneAdjunto" type="xsd:boolean" minOccurs="0"/>
+          <xsd:element name="sistemaPublicadorId" type="xsd:int" minOccurs="0"/>
+          <xsd:element name="pagina" type="xsd:int" minOccurs="0"/>
+          <xsd:element name="resultadosPorPagina" type="xsd:int" minOccurs="0"/>
+          <xsd:element name="referencia1" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="referencia2" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consultarComunicaciones" type="tns:ConsultarComunicacionesType"/>
+      <xsd:complexType name="ConsultarComunicacionesType">
+        <xsd:sequence>
+          <xsd:element name="authRequest" type="tns:AuthRequestType"/>
+          <xsd:element name="filter" type="tns:FilterType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consultarComunicacionesResponse" type="tns:ConsultarComunicacionesResponseType"/>
+      <xsd:complexType name="ConsultarComunicacionesResponseType">
+        <xsd:sequence>
+          <xsd:element name="RespuestaPaginada" type="tns:RespuestaPaginadaType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RespuestaPaginadaType">
+        <xsd:sequence>
+          <xsd:element name="pagina" type="xsd:int"/>
+          <xsd:element name="totalPaginas" type="xsd:int"/>
+          <xsd:element name="itemsPorPagina" type="xsd:int"/>
+          <xsd:element name="totalItems" type="xsd:int"/>
+          <xsd:element name="items" type="tns:ItemsType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ItemsType">
+        <xsd:sequence>
+          <xsd:element name="ComunicacionSimplificada" type="tns:ComunicacionSimplificadaType"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ComunicacionSimplificadaType">
+        <xsd:sequence>
+          <xsd:element name="idComunicacion" type="xsd:long"/>
+          <xsd:element name="cuitDestinatario" type="xsd:long"/>
+          <xsd:element name="fechaPublicacion" type="xsd:string"/>
+          <xsd:element name="fechaVencimiento" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="sistemaPublicador" type="xsd:int"/>
+          <xsd:element name="sistemaPublicadorDesc" type="xsd:string"/>
+          <xsd:element name="estado" type="xsd:int"/>
+          <xsd:element name="estadoDesc" type="xsd:string"/>
+          <xsd:element name="asunto" type="xsd:string"/>
+          <xsd:element name="prioridad" type="xsd:int"/>
+          <xsd:element name="tieneAdjunto" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consumirComunicacion" type="tns:ConsumirComunicacionType"/>
+      <xsd:complexType name="ConsumirComunicacionType">
+        <xsd:sequence>
+          <xsd:element name="authRequest" type="tns:AuthRequestType"/>
+          <xsd:element name="idComunicacion" type="xsd:long"/>
+          <xsd:element name="incluirAdjuntos" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consumirComunicacionResponse" type="tns:ConsumirComunicacionResponseType"/>
+      <xsd:complexType name="ConsumirComunicacionResponseType">
+        <xsd:sequence>
+          <xsd:element name="Comunicacion" type="tns:ComunicacionType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ComunicacionType">
+        <xsd:sequence>
+          <xsd:element name="idComunicacion" type="xsd:long"/>
+          <xsd:element name="cuitDestinatario" type="xsd:long"/>
+          <xsd:element name="fechaPublicacion" type="xsd:string"/>
+          <xsd:element name="fechaVencimiento" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="sistemaPublicador" type="xsd:int"/>
+          <xsd:element name="sistemaPublicadorDesc" type="xsd:string"/>
+          <xsd:element name="estado" type="xsd:int"/>
+          <xsd:element name="estadoDesc" type="xsd:string"/>
+          <xsd:element name="asunto" type="xsd:string"/>
+          <xsd:element name="prioridad" type="xsd:int"/>
+          <xsd:element name="tieneAdjunto" type="xsd:boolean" minOccurs="0"/>
+          <xsd:element name="mensaje" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="adjuntos" type="tns:AdjuntosType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AdjuntosType">
+        <xsd:sequence>
+          <xsd:element name="adjunto" type="tns:AdjuntoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AdjuntoType">
+        <xsd:sequence>
+          <xsd:element name="filename" type="xsd:string"/>
+          <xsd:element name="compressed" type="xsd:boolean"/>
+          <xsd:element name="signed" type="xsd:boolean"/>
+          <xsd:element name="encrypted" type="xsd:boolean"/>
+          <xsd:element name="processed" type="xsd:boolean"/>
+          <xsd:element name="public" type="xsd:boolean"/>
+          <xsd:element name="md5" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="contentSize" type="xsd:long"/>
+          <xsd:element name="content" type="xsd:base64Binary"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consultarSistemasPublicadores" type="tns:ConsultarSistemasPublicadoresType"/>
+      <xsd:complexType name="ConsultarSistemasPublicadoresType">
+        <xsd:sequence>
+          <xsd:element name="authRequest" type="tns:AuthRequestType"/>
+          <xsd:element name="idSistemaPublicador" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consultarSistemasPublicadoresResponse" type="tns:ConsultarSistemasPublicadoresResponseType"/>
+      <xsd:complexType name="ConsultarSistemasPublicadoresResponseType">
+        <xsd:sequence>
+          <xsd:element name="Sistemas" type="tns:SistemasType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SistemasType">
+        <xsd:sequence>
+          <xsd:element name="Sistema" type="tns:SistemaType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SistemaType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int"/>
+          <xsd:element name="descripcion" type="xsd:string"/>
+          <xsd:element name="certCN" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="subservicios" type="tns:SubserviciosType" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SubserviciosType">
+        <xsd:sequence>
+          <xsd:element name="Subservicio" type="tns:SubservicioType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SubservicioType">
+        <xsd:sequence>
+          <xsd:element name="nombre" type="xsd:string"/>
+          <xsd:element name="descripcion" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consultarEstados" type="tns:ConsultarEstadosType"/>
+      <xsd:complexType name="ConsultarEstadosType">
+        <xsd:sequence>
+          <xsd:element name="authRequest" type="tns:AuthRequestType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="consultarEstadosResponse" type="tns:ConsultarEstadosResponseType"/>
+      <xsd:complexType name="ConsultarEstadosResponseType">
+        <xsd:sequence>
+          <xsd:element name="Estados" type="tns:EstadosType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EstadosType">
+        <xsd:sequence>
+          <xsd:element name="Estado" type="tns:EstadoType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EstadoType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int"/>
+          <xsd:element name="descripcion" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="consultarComunicacionesIn">
+    <wsdl:part name="parameters" element="tns:consultarComunicaciones"/>
+  </wsdl:message>
+  <wsdl:message name="consultarComunicacionesOut">
+    <wsdl:part name="parameters" element="tns:consultarComunicacionesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="consumirComunicacionIn">
+    <wsdl:part name="parameters" element="tns:consumirComunicacion"/>
+  </wsdl:message>
+  <wsdl:message name="consumirComunicacionOut">
+    <wsdl:part name="parameters" element="tns:consumirComunicacionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="consultarSistemasPublicadoresIn">
+    <wsdl:part name="parameters" element="tns:consultarSistemasPublicadores"/>
+  </wsdl:message>
+  <wsdl:message name="consultarSistemasPublicadoresOut">
+    <wsdl:part name="parameters" element="tns:consultarSistemasPublicadoresResponse"/>
+  </wsdl:message>
+  <wsdl:message name="consultarEstadosIn">
+    <wsdl:part name="parameters" element="tns:consultarEstados"/>
+  </wsdl:message>
+  <wsdl:message name="consultarEstadosOut">
+    <wsdl:part name="parameters" element="tns:consultarEstadosResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="VEConsumerPort">
+    <wsdl:operation name="consultarComunicaciones">
+      <wsdl:input message="tns:consultarComunicacionesIn"/>
+      <wsdl:output message="tns:consultarComunicacionesOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="consumirComunicacion">
+      <wsdl:input message="tns:consumirComunicacionIn"/>
+      <wsdl:output message="tns:consumirComunicacionOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarSistemasPublicadores">
+      <wsdl:input message="tns:consultarSistemasPublicadoresIn"/>
+      <wsdl:output message="tns:consultarSistemasPublicadoresOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarEstados">
+      <wsdl:input message="tns:consultarEstadosIn"/>
+      <wsdl:output message="tns:consultarEstadosOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VEConsumerBinding" type="tns:VEConsumerPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultarComunicaciones">
+      <soap12:operation soapAction="consultarComunicaciones" style="document"/>
+      <wsdl:input><soap12:body use="literal"/></wsdl:input>
+      <wsdl:output><soap12:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consumirComunicacion">
+      <soap12:operation soapAction="consumirComunicacion" style="document"/>
+      <wsdl:input><soap12:body use="literal"/></wsdl:input>
+      <wsdl:output><soap12:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarSistemasPublicadores">
+      <soap12:operation soapAction="consultarSistemasPublicadores" style="document"/>
+      <wsdl:input><soap12:body use="literal"/></wsdl:input>
+      <wsdl:output><soap12:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarEstados">
+      <soap12:operation soapAction="consultarEstados" style="document"/>
+      <wsdl:input><soap12:body use="literal"/></wsdl:input>
+      <wsdl:output><soap12:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VEConsumer">
+    <wsdl:port name="VEConsumerPort" binding="tns:VEConsumerBinding">
+      <soap12:address location="https://stable-middleware-tecno-ext.afip.gob.ar/ve-ws/services/veconsumer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
