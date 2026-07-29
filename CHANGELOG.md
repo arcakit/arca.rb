@@ -1,5 +1,11 @@
 # Arca Changelog
 
+## [1.1.3] - 2026-07-29
+
+- **Seguridad:** Actualización de dependencias con vulnerabilidades conocidas (`nokogiri`, `rack`, `addressable`, `net-imap`, `json`, `concurrent-ruby`, `faraday`, `activesupport`).
+- **Seguridad:** Fuente de gems cambiada a HTTPS (`https://rubygems.org`).
+- **CI:** Permisos explícitos de `GITHUB_TOKEN` con `contents: read` (principio de mínimo privilegio).
+
 ## [1.1.2] 2025-03-02
 
 - **VEConsumer** — Nuevo servicio: Ventanilla Electrónica - Consumir Comunicaciones (`veconsumerws`). Permite consultar y leer comunicaciones enviadas a un contribuyente vía SOAP 1.2.
