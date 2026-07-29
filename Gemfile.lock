@@ -9,7 +9,7 @@ PATH
       savon (~> 2.15.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     activesupport (8.1.2)
       base64

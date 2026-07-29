@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.version     = Arca::VERSION
   s.platform    = Gem::Platform::RUBY
   s.required_ruby_version = '>= 3.3.4'
-  s.authors     = [ 'Arca Kit' ]
+  s.authors     = [ 'Simon Lev' ]
   s.email       = [ 'hola@arcakit.dev' ]
-  s.homepage    = 'https://arcakit.dev'
+  s.homepage    = 'https://github.com/simonlev/arca.rb'
   s.summary     = 'Cliente Ruby para webservices de AFIP/ARCA: facturación electrónica, comprobantes y servicios tributarios de Argentina'
   s.description = 'Cliente Ruby para integrar webservices SOAP de ARCA/AFIP en Argentina.'
   s.license     = 'MIT'
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rubocop-rails-omakase'
-  
+
   s.add_dependency 'activesupport'
   s.add_dependency 'builder'
   s.add_dependency 'httpclient'
